@@ -1,9 +1,10 @@
 package ru.skillfactory.university;
 
 public enum StudyProfile {
-    ENGINEER("Инженер"),
-    PROGRAMMER("Программист"),
-    MATHEMATICIAN("Математик");
+    PHYSICS("PHYSICS"),
+    MEDICINE("MEDICINE"),
+    LINGUISTICS("LINGUISTICS"),
+    MATHEMATICS("MATHEMATICS");
     String profileName;
 
     StudyProfile(String profileName) {
