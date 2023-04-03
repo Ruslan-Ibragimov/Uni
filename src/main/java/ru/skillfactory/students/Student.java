@@ -1,9 +1,15 @@
 package ru.skillfactory.students;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Student {
+    @SerializedName("Full Name")
     private String fullName;
+    @SerializedName("University ID")
     private String universityId;
+    @SerializedName("Current course year")
     private int currentCourseNumber;
+    @SerializedName("Avg. Exam Score")
     private float avgExamScore;
 
     public Student(String fullName, String universityId, int currentCourseNumber) {

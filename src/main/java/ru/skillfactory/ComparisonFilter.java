@@ -11,6 +11,8 @@ import ru.skillfactory.university.comparators.*;
 import java.util.NoSuchElementException;
 
 public final class ComparisonFilter {
+
+    //returns university or student comparator
     public static IUniComparator getUniComparator(UniComparators uc) {
         switch (uc) {
             case ID -> {
@@ -48,5 +50,8 @@ public final class ComparisonFilter {
             }
         }
         throw new NoSuchElementException("There's no such student comparator");
+    }
+
+    private ComparisonFilter() {
     }
 }

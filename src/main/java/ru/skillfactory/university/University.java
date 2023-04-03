@@ -1,10 +1,17 @@
 package ru.skillfactory.university;
 
+import com.google.gson.annotations.SerializedName;
+
 public class University {
+    @SerializedName("ID")
     final String id;
+    @SerializedName("Full Name")
     private String fullName;
+    @SerializedName("Short Name")
     private String shortName;
+    @SerializedName("Year of foundation")
     final int yearOfFoundation;
+    @SerializedName("Main Study Profile")
     private StudyProfile mainProfile;
 
 
