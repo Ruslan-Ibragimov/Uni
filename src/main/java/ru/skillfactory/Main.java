@@ -1,21 +1,25 @@
 package ru.skillfactory;
 
 
+import ru.skillfactory.utils.JsonUtil;
 import ru.skillfactory.interfaces.IStudentComparator;
 import ru.skillfactory.interfaces.IUniComparator;
 import ru.skillfactory.students.Student;
 import ru.skillfactory.students.comparators.StudentComparators;
 import ru.skillfactory.university.University;
 import ru.skillfactory.university.comparators.UniComparators;
+import ru.skillfactory.utils.StuUniUtil;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 
 public class Main {
 
 //    private static final Logger logger = LoggerFactory.getLogger(Main.class);
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         XLSXReader reader = new XLSXReader("src/main/resources/universityInfo.xlsx");
         IUniComparator uniComparator = ComparisonFilter.getUniComparator(UniComparators.ID);
@@ -59,6 +63,9 @@ public class Main {
             System.out.println(jStudent);
             System.out.println("toString() result: " + JsonUtil.jsonToStudent(jStudent));
         });
+
+        List<Statistics> statisticsList = StuUniUtil.createStatistics(deStudents, deUnis);
+        XlsWriter.writeXlsStatistics(statisticsList, "statistics.xlsx");
 
 
 

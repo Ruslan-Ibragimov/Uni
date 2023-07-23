@@ -1,4 +1,4 @@
-package ru.skillfactory;
+package ru.skillfactory.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

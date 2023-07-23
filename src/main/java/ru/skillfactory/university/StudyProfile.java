@@ -8,7 +8,13 @@ public enum StudyProfile {
 
     final String profileName;
 
+    public String getProfileName() {
+        return profileName;
+    }
+
     StudyProfile(String profileName) {
         this.profileName = profileName;
+
+
     }
 }
