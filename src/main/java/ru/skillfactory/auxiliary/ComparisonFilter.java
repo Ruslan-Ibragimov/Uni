@@ -1,4 +1,4 @@
-package ru.skillfactory;
+package ru.skillfactory.auxiliary;
 
 import ru.skillfactory.interfaces.IStudentComparator;
 import ru.skillfactory.interfaces.IUniComparator;

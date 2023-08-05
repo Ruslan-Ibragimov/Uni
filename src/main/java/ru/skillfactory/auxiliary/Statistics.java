@@ -1,12 +1,24 @@
-package ru.skillfactory;
+package ru.skillfactory.auxiliary;
 
 import ru.skillfactory.university.StudyProfile;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+
 public class Statistics {
+    @XmlElement(name = "studyProfile")
     public StudyProfile studyProfile;
+    @XmlElement(name = "avgExamScore")
     public float avgExamScore;
+    @XmlElement(name = "numberOfStudents")
     public int numberOfStudents;
+    @XmlTransient
     public int numberOfUniversities;
+    @XmlElement(name = "universities")
     public String universities;
 
     public Statistics() {

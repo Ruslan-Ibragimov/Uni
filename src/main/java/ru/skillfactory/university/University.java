@@ -2,16 +2,27 @@ package ru.skillfactory.university;
 
 import com.google.gson.annotations.SerializedName;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class University {
-    @SerializedName("ID")
+    @SerializedName("universityId")
+    @XmlElement(name = "universityId")
     final String id;
-    @SerializedName("Full Name")
+    @SerializedName("universityName")
+    @XmlElement(name = "universityName")
     private String fullName;
-    @SerializedName("Short Name")
+    @SerializedName("shortName")
+    @XmlTransient
     private String shortName;
-    @SerializedName("Year of foundation")
+    @SerializedName("foundationYear")
+    @XmlTransient
     final int yearOfFoundation;
-    @SerializedName("Main Study Profile")
+    @SerializedName("universityProfile")
+    @XmlElement(name = "universityProfile")
     private StudyProfile mainProfile;
 
 

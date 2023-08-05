@@ -1,6 +1,6 @@
 package ru.skillfactory.utils;
 import org.apache.commons.lang3.StringUtils;
-import ru.skillfactory.Statistics;
+import ru.skillfactory.auxiliary.Statistics;
 import ru.skillfactory.students.Student;
 import ru.skillfactory.university.StudyProfile;
 import ru.skillfactory.university.University;
@@ -11,15 +11,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalDouble;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class StuUniUtil {
+
+    private static final Logger logger = Logger.getLogger(StuUniUtil.class.getName());
 
     private StuUniUtil() {
     }
 
     public static List<Statistics> createStatistics(List<Student> students,
                                                     List<University> universities) {
+
+        logger.log(Level.INFO, "Statistics module started");
 
         List<Statistics> statisticsList = new ArrayList<>();
 
@@ -54,6 +60,9 @@ public class StuUniUtil {
             avgExamScore.ifPresent(value -> statistics.setAvgExamScore(
                     (float) BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP).doubleValue()));
         });
+
+        logger.log(Level.INFO,
+                String.format("Statistics module finished with %s statistical objects", statisticsList.size()));
 
         return statisticsList;
     }

@@ -1,4 +1,4 @@
-package ru.skillfactory;
+package ru.skillfactory.io;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -6,17 +6,25 @@ import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import ru.skillfactory.auxiliary.Statistics;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class XlsWriter {
+public class XLSWriter {
 
-    private XlsWriter() {
+    private static final Logger logger = Logger.getLogger(XLSWriter.class.getName());
+
+    private XLSWriter() {
     }
 
     public static void writeXlsStatistics(List<Statistics> statisticsList,
-                                          String filePath) throws IOException {
+                                          String filePath){
+
+        logger.log(Level.INFO, "Excel writing started");
 
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet statisticsSheet = workbook.createSheet("Statistics");
@@ -65,6 +73,10 @@ public class XlsWriter {
 
         try (FileOutputStream outputStream = new FileOutputStream(filePath)) {
             workbook.write(outputStream);
+        } catch (IOException e){
+            logger.log(Level.SEVERE, "New excel file writing failed", e);
+            return;
         }
+        logger.log(Level.INFO, "Excel writing finished successfully");
     }
 }

@@ -1,4 +1,4 @@
-package ru.skillfactory;
+package ru.skillfactory.io;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -12,29 +12,23 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class XLSXReader {
-    String path;
+    private static final Logger logger = Logger.getLogger(XLSXReader.class.getName());
 
-    public XLSXReader(String path) {
-        this.path = path;
+    public XLSXReader() {
     }
 
-    public String getPath() {
-        return path;
-    }
-
-    public XLSXReader setPath(String path) {
-        this.path = path;
-        return this;
-    }
-
-    public ArrayList<Student> getStudents() {
+    public static ArrayList<Student> getStudents(String excelPath) {
 
         ArrayList<Student> students = new ArrayList<>();
 
         try {
-            File file = new File(path);
+
+            logger.log(Level.INFO, "Excel reading started");
+            File file = new File(excelPath);
             FileInputStream fis = new FileInputStream(file);
             XSSFWorkbook wb = new XSSFWorkbook(fis);
             XSSFSheet sheet = wb.getSheet("Студенты");
@@ -56,17 +50,20 @@ public class XLSXReader {
 
         } catch (
                 IOException e) {
-            System.out.println(e);
+            logger.log(Level.SEVERE, "Excel reading failed", e);
+            return students;
         }
+        logger.log(Level.INFO, "Excel reading finished successfully");
         return students;
     }
 
-    public ArrayList<University> getUnis() {
+    public static ArrayList<University> getUnis(String excelPath) {
 
         ArrayList<University> unis = new ArrayList<>();
 
         try {
-            File file = new File(path);
+            logger.log(Level.INFO, "Excel reading started");
+            File file = new File(excelPath);
             FileInputStream fis = new FileInputStream(file);
             XSSFWorkbook wb = new XSSFWorkbook(fis);
             XSSFSheet sheet = wb.getSheet("Университеты");
@@ -89,8 +86,10 @@ public class XLSXReader {
 
         } catch (
                 IOException e) {
-            System.out.println(e);
+            logger.log(Level.SEVERE, "Excel reading failed", e);
+            return unis;
         }
+        logger.log(Level.INFO, "Excel reading finished successfully");
         return unis;
     }
 

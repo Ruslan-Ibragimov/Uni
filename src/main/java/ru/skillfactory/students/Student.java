@@ -2,14 +2,24 @@ package ru.skillfactory.students;
 
 import com.google.gson.annotations.SerializedName;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Student {
-    @SerializedName("Full Name")
+    @SerializedName("studentName")
+    @XmlElement(name = "studentName")
     private String fullName;
-    @SerializedName("University ID")
+    @SerializedName("universityId")
+    @XmlElement(name = "universityId")
     private String universityId;
-    @SerializedName("Current course year")
+    @SerializedName("currentCourseYear")
+    @XmlTransient
     private int currentCourseNumber;
-    @SerializedName("Avg. Exam Score")
+    @SerializedName("avgScore")
+    @XmlElement(name = "avgScore")
     private float avgExamScore;
 
     public Student(String fullName, String universityId, int currentCourseNumber) {
